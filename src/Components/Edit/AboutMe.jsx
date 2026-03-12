@@ -61,6 +61,7 @@ const handleUpdateInfo = async (e) => {
             {/* Body */}
 <form onSubmit={handleUpdateInfo} className="mt-4 space-y-4">              
     <textarea
+  
                 type="text"
                 placeholder="About me"
                 className="w-full border h-[150px] p-2 rounded"
