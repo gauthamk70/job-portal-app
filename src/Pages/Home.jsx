@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
   const currentUser = useSelector((state) => state.userReducer.currentUser)
 
-  const { allJobs,error,loading } = useSelector(state => state.jobReducer)
+  const { allJobs, error, loading } = useSelector(state => state.jobReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -47,109 +47,184 @@ function Home() {
     <>
       <Header insideHome viewApplication />
 
-     { loading?<div className="flex justify-center mt-5">
-  <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
-    <span className="sr-only">Loading...</span>
-  </div>
-</div>
-     :<div className="bg-gray-100 min-h-screen p-6">
+      {loading ?
 
-        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+        <div className="bg-gray-100 min-h-screen p-6">
+          <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
 
-          {/* LEFT PROFILE CARD */}
-          <div className="col-span-3 hidden lg:block">
+            {/* LEFT PROFILE SKELETON */}
+            <div className="col-span-3 hidden lg:block">
+              <div className="bg-white rounded-xl shadow p-5 animate-pulse">
+                <div className="flex flex-col items-center">
+                  <div className="w-20 h-20 rounded-full bg-gray-200"></div>
+                  <div className="h-4 w-24 bg-gray-200 mt-3 rounded"></div>
+                  <div className="h-3 w-32 bg-gray-100 mt-2 rounded"></div>
+                </div>
+                <hr className="my-4 border-gray-100" />
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <div className="h-3 w-16 bg-gray-200 rounded"></div>
+                    <div className="h-3 w-8 bg-blue-100 rounded"></div>
+                  </div>
+                  <div className="flex justify-between">
+                    <div className="h-3 w-20 bg-gray-200 rounded"></div>
+                    <div className="h-3 w-8 bg-blue-100 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <div className="bg-white rounded-xl shadow p-5">
+            {/* CENTER JOB FEED SKELETON */}
+            <div className="col-span-12 lg:col-span-6 space-y-5">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-white rounded-xl shadow p-5 animate-pulse">
+                  <div className="flex gap-4">
+                    <div className="w-14 h-14 rounded-lg bg-gray-200"></div>
+                    <div className="flex-1 space-y-3">
+                      <div className="h-5 w-1/3 bg-gray-200 rounded"></div>
+                      <div className="h-3 w-1/4 bg-gray-100 rounded"></div>
+                      <div className="space-y-2">
+                        <div className="h-3 w-full bg-gray-50 rounded"></div>
+                        <div className="h-3 w-5/6 bg-gray-50 rounded"></div>
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="h-6 w-12 bg-gray-100 rounded"></div>
+                        <div className="h-6 w-12 bg-gray-100 rounded"></div>
+                        <div className="h-6 w-12 bg-gray-100 rounded"></div>
+                      </div>
+                      <div className="flex justify-between items-center pt-2">
+                        <div className="h-3 w-16 bg-gray-100 rounded"></div>
+                        <div className="h-9 w-24 bg-blue-100 rounded-lg"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              <div className="flex flex-col items-center">
-                <img
-                  className="w-20 h-20 rounded-full"
-                  src="https://cdn-icons-png.flaticon.com/512/9187/9187532.png"
-                  alt=""
-                />
-
-                <h3 className="font-bold mt-3 text-lg">{currentUser?.name}</h3>
-                <p className="text-sm text-gray-500">{currentUser?.email}</p>
+            {/* RIGHT SIDE SKELETON */}
+            <div className="col-span-3 hidden lg:block space-y-5">
+              {/* Quote Card Skeleton */}
+              <div className="h-40 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl shadow p-6 animate-pulse">
+                <div className="w-10 h-10 bg-white/50 rounded mb-3"></div>
+                <div className="h-4 w-full bg-white/50 rounded mb-2"></div>
+                <div className="h-4 w-2/3 bg-white/50 rounded"></div>
               </div>
 
-              <hr className="my-4" />
-
-              <div className="space-y-2 text-sm">
-
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Profile views</span>
-                  <span className="font-bold text-blue-600">25</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Connections</span>
-                  <span className="font-bold text-blue-600">120</span>
-                </div>
-
+              {/* Featured Companies Skeleton */}
+              <div className="bg-white rounded-xl shadow p-5 animate-pulse space-y-4">
+                <div className="h-5 w-1/2 bg-gray-200 rounded mb-2"></div>
+                {[1, 2, 3, 4].map((j) => (
+                  <div key={j} className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-100 rounded-lg"></div>
+                    <div className="h-3 w-20 bg-gray-100 rounded"></div>
+                  </div>
+                ))}
               </div>
-
             </div>
 
           </div>
+        </div>
+        : <div className="bg-gray-100 min-h-screen p-6">
 
+          <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
 
-          {/* CENTER JOB FEED */}
-          <div className="col-span-12 lg:col-span-6 space-y-5 max-h-screen overflow-y-auto">
+            {/* LEFT PROFILE CARD */}
+            <div className="col-span-3 hidden lg:block">
 
-            {allJobs.length > 0 && allJobs.map(job => (
+              <div className="bg-white rounded-xl shadow p-5">
 
-              <div key={job.id} className="bg-white rounded-xl shadow p-5 hover:shadow-md transition">
-
-                <div className="flex gap-4">
-
+                <div className="flex flex-col items-center">
                   <img
-                    className="w-14 h-14 rounded-lg object-cover"
-                    src={job.companyLogo}
+                    className="w-20 h-20 rounded-full"
+                    src="https://cdn-icons-png.flaticon.com/512/9187/9187532.png"
                     alt=""
                   />
 
-                  <div className="flex-1">
+                  <h3 className="font-bold mt-3 text-lg">{currentUser?.name}</h3>
+                  <p className="text-sm text-gray-500">{currentUser?.email}</p>
+                </div>
 
-                    <h3 className="font-bold text-lg">{job.jobTitle}</h3>
+                <hr className="my-4" />
 
-                    <p className="text-sm text-gray-600">
-                      {job.company} • {job.experienceRequired}
-                    </p>
+                <div className="space-y-2 text-sm">
 
-                    <p className="text-sm text-gray-500 mt-1">
-                      {job.salary}
-                    </p>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Profile views</span>
+                    <span className="font-bold text-blue-600">25</span>
+                  </div>
 
-                    <p className="text-gray-500 text-sm mt-2 line-clamp-2">
-                      {job.jobDescription}
-                    </p>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Connections</span>
+                    <span className="font-bold text-blue-600">120</span>
+                  </div>
 
-                    <div className="flex flex-wrap gap-2 mt-3">
+                </div>
 
-                      {job.skillsRequired.map(skill => (
+              </div>
 
-                        <span
-                          key={skill}
-                          className="text-xs bg-gray-100 px-2 py-1 rounded"
-                        >
-                          {skill}
+            </div>
+
+
+            {/* CENTER JOB FEED */}
+            <div className="col-span-12 lg:col-span-6 space-y-5 max-h-screen overflow-y-auto">
+
+              {allJobs.length > 0 && allJobs.map(job => (
+
+                <div key={job.id} className="bg-white rounded-xl shadow p-5 hover:shadow-md transition">
+
+                  <div className="flex gap-4">
+
+                    <img
+                      className="w-14 h-14 rounded-lg object-cover"
+                      src={job.companyLogo}
+                      alt=""
+                    />
+
+                    <div className="flex-1">
+
+                      <h3 className="font-bold text-lg">{job.jobTitle}</h3>
+
+                      <p className="text-sm text-gray-600">
+                        {job.company} • {job.experienceRequired}
+                      </p>
+
+                      <p className="text-sm text-gray-500 mt-1">
+                        {job.salary}
+                      </p>
+
+                      <p className="text-gray-500 text-sm mt-2 line-clamp-2">
+                        {job.jobDescription}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mt-3">
+
+                        {job.skillsRequired.map(skill => (
+
+                          <span
+                            key={skill}
+                            className="text-xs bg-gray-100 px-2 py-1 rounded"
+                          >
+                            {skill}
+                          </span>
+
+                        ))}
+
+                      </div>
+
+                      <div className="flex justify-between items-center mt-4">
+
+                        <span className="text-xs text-gray-400">
+                          {timeAgo(job.postedAt)}
                         </span>
+                        <Link to={`/view/${job.id}`}>
 
-                      ))}
+                          <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700">
+                            View Job
+                          </button>
+                        </Link>
 
-                    </div>
-
-                    <div className="flex justify-between items-center mt-4">
-
-                      <span className="text-xs text-gray-400">
-                        {timeAgo(job.postedAt)}
-                      </span>
-                      <Link to={`/view/${job.id}`}>
-
-                        <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700">
-                          View Job
-                        </button>
-                      </Link>
+                      </div>
 
                     </div>
 
@@ -157,106 +232,104 @@ function Home() {
 
                 </div>
 
-              </div>
+              ))}
 
-            ))}
-
-          </div>
-
-
-          {/* RIGHT SIDE PANEL */}
-          {/* RIGHT SIDE PANEL - DECORATIVE WITH LINKS */}
-          <div className="col-span-3 hidden lg:block space-y-5">
-
-            {/* Motivational Quote Card */}
-            <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow p-6 text-white">
-              <svg className="w-10 h-10 mb-3 opacity-80" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-              </svg>
-              <p className="text-lg font-medium italic">"The future depends on what you do today."</p>
-              <p className="text-sm mt-3 opacity-80">- Mahatma Gandhi</p>
             </div>
 
-            {/* Featured Companies Card with Links */}
-            <div className="bg-white rounded-xl shadow p-5">
-              <h3 className="font-bold text-lg mb-3">Featured Companies</h3>
-              <div className="space-y-3">
-                <a
-                  href="https://www.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
-                >
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold">G</div>
-                  <span className="font-medium text-gray-700">Google</span>
-                </a>
-                <a
-                  href="https://www.microsoft.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
-                >
-                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold">M</div>
-                  <span className="font-medium text-gray-700">Microsoft</span>
-                </a>
-                <a
-                  href="https://www.amazon.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
-                >
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold">A</div>
-                  <span className="font-medium text-gray-700">Amazon</span>
-                </a>
-                <a
-                  href="https://www.tesla.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
-                >
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold">T</div>
-                  <span className="font-medium text-gray-700">Tesla</span>
-                </a>
-              </div>
-            </div>
 
-            {/* Success Stories Card */}
-            <div className="bg-white rounded-xl shadow p-5">
-              <h3 className="font-bold text-lg mb-3">Success Stories</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/44.jpg"
-                    alt="Sarah"
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="text-sm font-medium">Sarah Chen</p>
-                    <p className="text-xs text-gray-500">Got hired as UI Designer</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <img
-                    src="https://randomuser.me/api/portraits/men/46.jpg"
-                    alt="Mike"
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="text-sm font-medium">Mike Rodriguez</p>
-                    <p className="text-xs text-gray-500">Placed at Google</p>
-                  </div>
+            {/* RIGHT SIDE PANEL */}
+            {/* RIGHT SIDE PANEL - DECORATIVE WITH LINKS */}
+            <div className="col-span-3 hidden lg:block space-y-5">
+
+              {/* Motivational Quote Card */}
+              <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow p-6 text-white">
+                <svg className="w-10 h-10 mb-3 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+                <p className="text-lg font-medium italic">"The future depends on what you do today."</p>
+                <p className="text-sm mt-3 opacity-80">- Mahatma Gandhi</p>
+              </div>
+
+              {/* Featured Companies Card with Links */}
+              <div className="bg-white rounded-xl shadow p-5">
+                <h3 className="font-bold text-lg mb-3">Featured Companies</h3>
+                <div className="space-y-3">
+                  <a
+                    href="https://www.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
+                  >
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold">G</div>
+                    <span className="font-medium text-gray-700">Google</span>
+                  </a>
+                  <a
+                    href="https://www.microsoft.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
+                  >
+                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold">M</div>
+                    <span className="font-medium text-gray-700">Microsoft</span>
+                  </a>
+                  <a
+                    href="https://www.amazon.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
+                  >
+                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold">A</div>
+                    <span className="font-medium text-gray-700">Amazon</span>
+                  </a>
+                  <a
+                    href="https://www.tesla.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition cursor-pointer no-underline"
+                  >
+                    <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold">T</div>
+                    <span className="font-medium text-gray-700">Tesla</span>
+                  </a>
                 </div>
               </div>
+
+              {/* Success Stories Card */}
+              <div className="bg-white rounded-xl shadow p-5">
+                <h3 className="font-bold text-lg mb-3">Success Stories</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <img
+                      src="https://randomuser.me/api/portraits/women/44.jpg"
+                      alt="Sarah"
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="text-sm font-medium">Sarah Chen</p>
+                      <p className="text-xs text-gray-500">Got hired as UI Designer</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <img
+                      src="https://randomuser.me/api/portraits/men/46.jpg"
+                      alt="Mike"
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="text-sm font-medium">Mike Rodriguez</p>
+                      <p className="text-xs text-gray-500">Placed at Google</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
             </div>
 
-
-
           </div>
+          <Footer />
 
-        </div>
-        <Footer />
-
-      </div>}
+        </div>}
 
     </>
   )
