@@ -334,18 +334,18 @@ const ProfilePage = () => {
 
                   <div key={index} className="relative group">
 
-                   <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full group">
-  {skill}
+                    <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full group">
+                      {skill}
 
-  <button
-    onClick={() => handleDeleteSkill(index)}
-    className="bg-red-500 ms-2 px-1 rounded-lg text-white text-xs hidden group-hover:inline-block"
-  >
-    X
-  </button>
-</span>
+                      <button
+                        onClick={() => handleDeleteSkill(index)}
+                        className="bg-red-500 ms-2 px-1 rounded-lg text-white text-xs hidden group-hover:inline-block"
+                      >
+                        X
+                      </button>
+                    </span>
 
-                    
+
 
                   </div>
 

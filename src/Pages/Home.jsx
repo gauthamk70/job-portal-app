@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
   const currentUser = useSelector((state) => state.userReducer.currentUser)
 
-  const { allJobs } = useSelector(state => state.jobReducer)
+  const { allJobs,error,loading } = useSelector(state => state.jobReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -47,7 +47,12 @@ function Home() {
     <>
       <Header insideHome viewApplication />
 
-      <div className="bg-gray-100 min-h-screen p-6">
+     { loading?<div className="flex justify-center mt-5">
+  <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+    <span className="sr-only">Loading...</span>
+  </div>
+</div>
+     :<div className="bg-gray-100 min-h-screen p-6">
 
         <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
 
@@ -251,7 +256,7 @@ function Home() {
         </div>
         <Footer />
 
-      </div>
+      </div>}
 
     </>
   )

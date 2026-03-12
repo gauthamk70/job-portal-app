@@ -84,10 +84,7 @@ const userSlice = createSlice({
 
       .addCase(registerUser.fulfilled, (state) => {
         state.loading = false
-        // state.currentUser = action.payload
-
-
-  // localStorage.setItem("user", JSON.stringify(action.payload))
+        
       })
 
       
@@ -106,7 +103,7 @@ const userSlice = createSlice({
         state.loading = false
         state.currentUser = action.payload
 
-        localStorage.setItem("user", JSON.stringify(action.payload))
+         localStorage.setItem("user", JSON.stringify(action.payload))
       })
 
       .addCase(loginUser.rejected, (state,action) => {

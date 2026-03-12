@@ -14,7 +14,9 @@ const jobSlice = createSlice({
     name:'jobs',
     initialState:{
         allJobs:[],
-        dummyJobs:[]
+        dummyJobs:[],
+        error: "",
+        loading: false
     },
     reducers:{
         searchJob:(state,action)=>{
@@ -26,15 +28,20 @@ const jobSlice = createSlice({
         builder.addCase(fetchJobs.fulfilled,(state,action)=>{
             state.allJobs=action.payload
             state.dummyJobs=action.payload
+               state.loading = false
         }),
         builder.addCase(fetchJobs.pending,(state,action)=>{
             state.allJobs=[]
             state.dummyJobs=[]
+              state.loading = true
+            
 
         }),
         builder.addCase(fetchJobs.rejected,(state,action)=>{
             state.allJobs=[]
             state.dummyJobs=[]
+             state.error = "API failed"
+               state.loading = false
         })
     }
 
